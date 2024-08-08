@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: OrdersProducer
+  kafka:
+    template:
+      default-topic=my-topic:
+    bootstrap-servers: localhost:9092
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      properties:
+        partitioner.class: com.volga.KafkaTrainingProjectOrders.partitioner.CustomPartitioner
+server:
+  port: 8180
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.example: DEBUG

@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: Notifications
+  kafka:
+    template:
+      default-topic=my-topic:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: my-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: java.util
+        isolation.level: read_committed
+      listener:
+        type: batch
+server:
+  port: 8480
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.example: DEBUG

@@ -1,0 +1,24 @@
+spring:
+  application:
+    name: PayedOrders
+  kafka:
+    template:
+      default-topic=my-topic:
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: orders-group
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      listener:
+        type: batch
+server:
+  port: 8280
+logging:
+  level:
+    root: INFO
+    org.springframework.web: DEBUG
+    com.example: DEBUG
